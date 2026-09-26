@@ -1,0 +1,59 @@
+<div class="jsf-steps-container" #container>
+  <svg class="jsf-svg-arrows">
+    <line *ngFor="let arrow of arrows"
+      [attr.x1]="arrow.x1" [attr.y1]="arrow.y1"
+      [attr.x2]="arrow.x2" [attr.y2]="arrow.y2"
+      [attr.stroke]="resolvedConfig.arrowColor"
+      [attr.stroke-width]="resolvedConfig.arrowStrokeWidth"
+      marker-end="url(#jsf-arrowhead)" />
+    <defs>
+      <marker id="jsf-arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" [attr.fill]="resolvedConfig.arrowheadColor" />
+      </marker>
+    </defs>
+  </svg>
+
+  <ng-container *ngFor="let phaseData of phaseRows; let phaseIndex = index">
+    <div class="jsf-phase-header"
+         *ngIf="phaseData.title"
+         [ngStyle]="{
+           'font-size': resolvedConfig.phaseHeaderFontSize,
+           'font-weight': resolvedConfig.phaseHeaderFontWeight
+         }">
+      {{ phaseData.title }}
+    </div>
+
+    <div class="jsf-phase-container">
+      <ng-container *ngFor="let row of phaseData.rows; let rowIndex = index">
+        <div class="jsf-row"
+             [ngStyle]="{
+               'justify-items': getRowJustify(rowIndex, row.length),
+               'grid-template-columns': 'repeat(auto-fit, minmax(' + resolvedConfig.cardMinWidth + 'px, 1fr))',
+               'gap': resolvedConfig.gap
+             }">
+          <div class="jsf-step-card" *ngFor="let step of row" #stepCard
+               [ngStyle]="{
+                 'background': resolvedConfig.cardBackground,
+                 'border-radius': resolvedConfig.cardBorderRadius,
+                 'box-shadow': resolvedConfig.cardBoxShadow,
+                 'padding': resolvedConfig.cardPadding,
+                 'min-width': resolvedConfig.cardMinWidth + 'px'
+               }">
+            <div class="jsf-icon"
+                 [ngStyle]="{ 'font-size': resolvedConfig.iconSize, 'color': resolvedConfig.iconColor }">
+              <i [class]="step.icon"></i>
+            </div>
+            <div class="jsf-title"
+                 [ngStyle]="{ 'font-size': resolvedConfig.titleFontSize, 'font-weight': resolvedConfig.titleFontWeight }">
+              {{ step.title }}
+            </div>
+            <div class="jsf-description"
+                 [ngStyle]="{ 'font-size': resolvedConfig.descriptionFontSize, 'color': resolvedConfig.descriptionColor }">
+              {{ step.description }}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+</div>

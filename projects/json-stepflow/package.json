@@ -1,0 +1,32 @@
+﻿{
+  "name": "json-stepflow",
+  "version": "1.0.0",
+  "description": "An Angular component that converts JSON data into beautiful, responsive step-flow visualizations with automatic layout adjustment based on device width. Supports phases, step cards with icons, and SVG arrow connectors.",
+  "keywords": [
+    "angular",
+    "steps",
+    "stepflow",
+    "json",
+    "wizard",
+    "process",
+    "flow",
+    "responsive",
+    "step-cards",
+    "admission",
+    "workflow"
+  ],
+  "author": "Yogesh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.0.0 || ^18.0.0 || ^19.0.0",
+    "@angular/core": "^17.0.0 || ^18.0.0 || ^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
